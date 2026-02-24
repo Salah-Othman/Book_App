@@ -1,8 +1,9 @@
-import 'package:books_app/splash.dart';
+import 'package:books_app/features/ui/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-void main() {
+void main() async {
+  await ScreenUtil.ensureScreenSize();
   runApp(const MyApp());
 }
 
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
       builder: (_, child) {
         return MaterialApp(debugShowCheckedModeBanner: false, home: child);
       },
-      child: Splash(),
+      child: HomeScreen(),
     );
   }
 }

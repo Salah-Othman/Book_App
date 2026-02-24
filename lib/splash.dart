@@ -1,6 +1,7 @@
 import 'package:books_app/core/constants/app_colors.dart';
 import 'package:books_app/features/ui/onboarding_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class Splash extends StatefulWidget {
@@ -29,8 +30,8 @@ class _SplashState extends State<Splash> {
       body: Center(
         child: SvgPicture.asset(
           'assets/images/logo.svg',
-          width: 200,
-          height: 200,
+          width: 200.w,
+          height: 200.h,
         ),
       ),
     );
