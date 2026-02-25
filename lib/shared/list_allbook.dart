@@ -3,7 +3,6 @@ import 'package:books_app/features/logic/book/book_cubit.dart';
 import 'package:books_app/features/logic/book/book_state.dart';
 import 'package:books_app/features/ui/details_screen.dart';
 import 'package:books_app/shared/custom_text.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,7 +13,7 @@ class ListAllbook extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => BookCubit(Dio())..getAllBooks(),
+      create: (context) => BookCubit()..getAllBooks(),
       child: BlocBuilder<BookCubit, BookState>(
         builder: (context, state) {
           if (state is BookLoading) {

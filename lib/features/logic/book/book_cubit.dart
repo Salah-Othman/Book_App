@@ -5,22 +5,27 @@ import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BookCubit extends Cubit<BookState> {
-  final Dio dio;
+  
 
-  BookCubit(this.dio) : super(BookInitial());
+  BookCubit() : super(BookInitial());
   List<Book> allBooks = [];
+  List<Book> topBooks = [];
+  List<Book> randomBooks = [];
 
   /// Get Top Random Books
   Future<void> getRandomBooks() async {
     try {
       emit(BookLoading());
-      final Response response = await dio.get(
-        'https://potterapi-fedeperin.vercel.app/en/books/random',
-      );
-      Book randomBook = Book.fromJson(response.data);
-      emit(BookSuccess([randomBook]));
-    } catch (e) {
-      emit(BookError(e.toString()));
+
+      final response = await DioHelper.getData(url: "books");
+
+      final List<dynamic> data = response.data;
+
+      randomBooks = Book.listFromJson(data);
+
+      emit(BookSuccess(randomBooks));
+    } on DioException catch (e) {
+      emit(BookError(e.message ?? "Network Error"));
     }
   }
 
@@ -45,13 +50,16 @@ class BookCubit extends Cubit<BookState> {
   Future<void> getTopBooks() async {
     try {
       emit(BookLoading());
-      final Response response = await dio.get(
-        'https://potterapi-fedeperin.vercel.app/en/books?max=3',
-      );
-      List<Book> topBooks = Book.listFromJson(response.data);
+
+      final response = await DioHelper.getData(url: "books", query: {"max": 3});
+
+      final List<dynamic> data = response.data;
+
+      topBooks = Book.listFromJson(data);
+
       emit(BookSuccess(topBooks));
-    } catch (e) {
-      emit(BookError(e.toString()));
+    } on DioException catch (e) {
+      emit(BookError(e.message ?? "Network Error"));
     }
   }
 }
