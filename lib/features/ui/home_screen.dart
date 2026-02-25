@@ -1,6 +1,5 @@
 import 'package:books_app/core/constants/app_colors.dart';
-import 'package:books_app/features/ui/book_screen.dart';
-import 'package:books_app/features/ui/details_screen.dart';
+import 'package:books_app/features/logic/search/search_cubit.dart';
 import 'package:books_app/features/ui/search_screen.dart';
 import 'package:books_app/shared/best_deals.dart';
 import 'package:books_app/shared/custom_text.dart';
@@ -37,7 +36,12 @@ class HomeScreen extends StatelessWidget {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (c) => SearchScreen()),
+                        MaterialPageRoute(
+                          builder: (c) => BlocProvider(
+                            create: (context) => SearchBookCubit(),
+                            child: SearchScreen(),
+                          ),
+                        ),
                       );
                     },
                     icon: Icon(

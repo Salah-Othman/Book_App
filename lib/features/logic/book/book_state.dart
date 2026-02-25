@@ -38,12 +38,12 @@ class SearchLoading extends BookState {}
 
 class SearchSuccess extends BookState {
   final List<Book> books;
-  final String searchQuery;
+  
 
-  const SearchSuccess({required this.books, required this.searchQuery});
+  const SearchSuccess({required this.books});
 
   @override
-  List<Object?> get props => [books, searchQuery];
+  List<Object?> get props => [books];
 }
 
 class SearchEmpty extends BookState {

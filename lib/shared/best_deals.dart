@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:books_app/core/constants/app_colors.dart';
 import 'package:books_app/features/logic/book/book_cubit.dart';
 import 'package:books_app/features/logic/book/book_state.dart';

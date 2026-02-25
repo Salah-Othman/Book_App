@@ -1,9 +1,11 @@
+import 'package:books_app/core/network/dio_helper.dart';
 import 'package:books_app/features/ui/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() async {
   await ScreenUtil.ensureScreenSize();
+  DioHelper.init();
   runApp(const MyApp());
 }
 
